@@ -1,12 +1,13 @@
-import express, {Request, Response} from 'express';
+import express from 'express';
 
 const router = express.Router();
 
-router.post(
-    '/api/users/signup',
-    async (req: Request, res: Response) => {
-        res.send('Hi there!');
-    }
-);
+// Controller
+const registerController = require('../controllers/RegisterController');
+
+// Validators
+const registerValidator = require('../validators/RegisterValidator');
+
+router.post('/register', registerValidator.handle(), registerController.register);
 
 export {router as registerRouter};
