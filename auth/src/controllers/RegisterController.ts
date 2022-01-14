@@ -37,7 +37,7 @@ class RegisterController extends Controller {
 
     generateToken(userId: any) {
         let expireTime: number = 60 * 60 * 24;// 1 Day
-        return jwt.sign({id: userId}, 'test', {expiresIn: expireTime});
+        return jwt.sign({id: userId}, process.env.JWT_KEY!, {expiresIn: expireTime});
     }
 }
 
