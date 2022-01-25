@@ -1,4 +1,5 @@
 import express from 'express';
+
 const bodyParser = require('body-parser');
 import cookieSession from 'cookie-session';
 
@@ -14,12 +15,7 @@ app.use(
         secure: true
     })
 );
+
 app.use(require('./routes'));
 
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://auth-mongo-srv:27017/auth', {useNewUrlParser: true, useUnifiedTopology: true}).then(() => {
-    console.log('connect to mongoDb Database!');
-});
-app.listen(3000, () => {
-    console.log('Listening on port 3000!');
-});
+export = app;

@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import {ConflictError} from "../errors/ConflictError";
 
 // Controller
 const Controller = require('../controllers/Controller');
@@ -11,16 +12,11 @@ class RegisterController extends Controller {
 
     async register(req: any, res: any, next: any) {
         try {
-            // Validation Process
-            const validation = await new ValidationMessage().apiHandle(req);
-            // Have Error
-            if (validation) return res.json(validation);
 
             const {email, password} = req.body;
             const existingUser = await userService.findOne({email});
-            if (existingUser) {
-                return res.json('Email in use');
-            }
+            if (existingUser) throw new ConflictError('email in use');
+
             const user = await userService.insert({email, password});
 
             // Store it on session object
@@ -35,7 +31,7 @@ class RegisterController extends Controller {
         }
     }
 
-    generateToken(userId: any) {
+    async generateToken(userId: any) {
         let expireTime: number = 60 * 60 * 24;// 1 Day
         return jwt.sign({id: userId}, process.env.JWT_KEY!, {expiresIn: expireTime});
     }

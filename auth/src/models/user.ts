@@ -11,8 +11,9 @@ const userSchema = Schema({
             ret.id = ret._id
             delete ret._id;
             delete ret.password;
-            delete ret.__v;
-        }, virtuals: true
+        },
+        virtuals: true,
+        versionKey: false
     }
 });
 
