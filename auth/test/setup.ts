@@ -24,9 +24,8 @@ before('db', async () => {
 describe('test', async () => {
     it('should', async () => {
         request(app).post('/api/users/register').send({email: 'a@a.com', password: 12345678}).then(value => {
-            //console.log(value)
-            let a= value.get('Set-Cookie')
-            console.log(a)
+            let cookie = value.get('Set-Cookie');
+            console.log(cookie)
         });
     });
 

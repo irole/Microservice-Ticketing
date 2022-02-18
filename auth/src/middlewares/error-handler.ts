@@ -20,7 +20,7 @@ export const errorHandler = (
         return res.status(err.statusCode).send(
             {
                 code: err.statusCode, // code : 500
-                errors: err.message // string
+                errors: [err] // string
             });
     }
     res.status(400).send({
