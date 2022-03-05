@@ -2,8 +2,7 @@ import express from 'express';
 
 const bodyParser = require('body-parser');
 import cookieSession from 'cookie-session';
-
-const mongoose = require('mongoose');
+import {Router} from "./routes/index";
 
 const app = express();
 app.use(bodyParser.json());
@@ -12,10 +11,10 @@ app.set('trust proxy', true);
 app.use(
     cookieSession({
         signed: false,
-        secure: true
+        secure: process.env.NODE_ENV !== 'test'
     })
 );
 
-app.use(require('./routes'));
+app.use(Router);
 
 export = app;

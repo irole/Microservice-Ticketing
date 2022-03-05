@@ -1,18 +1,15 @@
-import autoBind from "auto-bind";
-
 interface CustomErrorInterface {
     statusCode: number;
-    data: any;
+    msg: any;
 }
 
 export abstract class CustomError extends Error implements CustomErrorInterface {
     statusCode!: number;
-    data!: any;
-    msg!: string;
+    msg!: any;
 
     protected constructor(message: string = '') {
         super(message);
-        autoBind(this);
+        Object.setPrototypeOf(this, CustomError.prototype);
     }
 
 }

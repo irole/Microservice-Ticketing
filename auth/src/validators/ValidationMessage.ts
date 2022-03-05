@@ -22,4 +22,4 @@ class ValidationMessage {
     }
 }
 
-module.exports = ValidationMessage;
+export default ValidationMessage;

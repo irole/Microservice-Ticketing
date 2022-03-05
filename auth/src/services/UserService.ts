@@ -1,11 +1,9 @@
-import express from 'express';
+import Service from "./Service";
+import User from "../models/user";
 // Packages
 
 const bcrypt = require('bcrypt');
-// Service
-const Service = require('../services/Service');
-// Model
-const User = require('../models/user');
+
 
 interface UserAttrs {
     email: string;
@@ -29,6 +27,10 @@ class UserService extends Service {
         return super.insert(values);
     }
 
+    comparePassword(password: string, userPassword: string) {
+        return bcrypt.compareSync(password, userPassword);
+    }
+
 }
 
-module.exports = new UserService();
+export default new UserService();

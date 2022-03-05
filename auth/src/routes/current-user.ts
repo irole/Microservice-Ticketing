@@ -1,9 +1,10 @@
 import express from 'express';
 
+import CurrentUserController from "../controllers/CurrentUserController";
+import {currentUser} from "@irolegroup/common";
+
 const router = express.Router();
 
-router.get('/currentuser', (req, res) => {
-  res.send('Hi there!');
-});
+router.get('/currentuser', currentUser, CurrentUserController.index);
 
-export { router as currentUserRouter };
+export {router as currentUserRouter};

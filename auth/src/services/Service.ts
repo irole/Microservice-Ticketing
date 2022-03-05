@@ -3,7 +3,7 @@ import * as Mongoose from "mongoose";
 
 const autoBind = require('auto-bind');
 
-module.exports = class Service {
+export default class Service {
 
     model: any;
 
@@ -61,7 +61,7 @@ module.exports = class Service {
         return await this.model.insertMany(values);
     }
 
-    async paginate(where = {}, page: number, sort = {createdAt: 1}, limit = 10, populate = null) {
+    async paginate(where = {}, page: any, sort = {createdAt: 1}, limit = 10, populate = null) {
         return await this.model.paginate(where, {page, sort, limit, populate});
     }
 

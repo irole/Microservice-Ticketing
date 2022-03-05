@@ -1,15 +1,10 @@
 import express from 'express';
+import registerValidator from "../validators/RegisterValidator";
+import registerController from "../controllers/RegisterController";
+import {validateRequest} from "@irolegroup/common";
 
 const router = express.Router();
 
-// Controller
-const registerController = require('../controllers/RegisterController');
-
-// middlewares
-const validateRequest = require('../middlewares/validateRequest');
-
-// Validators
-const registerValidator = require('../validators/RegisterValidator');
 
 router.post('/register', registerValidator.handle(), validateRequest, registerController.register);
 
