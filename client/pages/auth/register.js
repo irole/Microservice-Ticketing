@@ -21,16 +21,6 @@ export default function register() {
     const onSubmit = async (event) => {
         event.preventDefault();
         await doRequest();
-        // try {
-        //     const response = await axios.post('/api/users/register', {
-        //         email,
-        //         password
-        //     });
-        //
-        //     //console.log(response.data);
-        // } catch (err) {
-        //     setErrors(err.response.data.errors);
-        // }
     };
     return (
         <form onSubmit={onSubmit}>
