@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ServerError = void 0;
 const CustomError_1 = require("./CustomError");
 class ServerError extends CustomError_1.CustomError {
     constructor(message, statusCode = 500) {
